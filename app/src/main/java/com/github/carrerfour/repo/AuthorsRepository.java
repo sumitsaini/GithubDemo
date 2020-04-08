@@ -1,9 +1,9 @@
-package com.github.carrerfour.Repo;
+package com.github.carrerfour.repo;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.carrerfour.Repo.Services.CommonApi;
-import com.github.carrerfour.Repo.Services.RetrofitService;
+import com.github.carrerfour.repo.services.CommonApi;
+import com.github.carrerfour.repo.services.RetrofitService;
 import com.github.carrerfour.model.ProfileDetail;
 import com.github.carrerfour.model.ProfileRepo;
 
@@ -13,14 +13,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsRepository {
+public class AuthorsRepository {
 
     private CommonApi commonApi;
-    private final String TAG = NewsRepository.class.getSimpleName();
+    private final String TAG = AuthorsRepository.class.getSimpleName();
 
-    public NewsRepository() {
+    public AuthorsRepository() {
         commonApi = RetrofitService.getInstance().create(CommonApi.class);
     }
+
 
     public MutableLiveData<ProfileDetail> getDetails(String userName) {
 
@@ -29,12 +30,18 @@ public class NewsRepository {
         commonApi.getDetail(userName).enqueue(new Callback<ProfileDetail>() {
             @Override
             public void onResponse(Call<ProfileDetail> call, Response<ProfileDetail> response) {
-                responseContainerMutableLiveData.postValue(response.body());
+                ProfileDetail profileDetail = response.body();
+                profileDetail.setSuccess(true);
+                responseContainerMutableLiveData.postValue(profileDetail);
+
             }
 
             @Override
             public void onFailure(Call<ProfileDetail> call, Throwable t) {
-                responseContainerMutableLiveData.postValue(null);
+                ProfileDetail profileDetail = new ProfileDetail();
+                profileDetail.setSuccess(false);
+                profileDetail.setErrorMessage(t.getMessage());
+                responseContainerMutableLiveData.postValue(profileDetail);
             }
         });
 
@@ -55,7 +62,7 @@ public class NewsRepository {
 
             @Override
             public void onFailure(Call<ArrayList<ProfileRepo>> call, Throwable t) {
-
+                responseContainerMutableLiveData.postValue(null);
             }
         });
 

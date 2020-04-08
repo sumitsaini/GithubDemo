@@ -5,32 +5,22 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.carrerfour.Repo.NewsRepository;
-import com.github.carrerfour.model.ProfileDetail;
+import com.github.carrerfour.repo.AuthorsRepository;
 import com.github.carrerfour.model.ProfileRepo;
 
 import java.util.ArrayList;
 
 public class UserDetailViewModel extends AndroidViewModel {
 
-    private MutableLiveData<ArrayList<ProfileRepo>> profileRepoMutableData;
-    private NewsRepository newsRepository;
+    private AuthorsRepository newsRepository;
 
     public UserDetailViewModel(Application application) {
         super(application);
-        newsRepository = new NewsRepository();
+        newsRepository = new AuthorsRepository();
     }
 
-    public void getRepos(String userName) {
-        if (profileRepoMutableData == null) {
-            profileRepoMutableData = new MutableLiveData<ArrayList<ProfileRepo>>();
-        }
-
-        profileRepoMutableData = newsRepository.getRepos(userName);
-    }
-
-    public MutableLiveData<ArrayList<ProfileRepo>> getProfileRepoMutableData() {
-        return profileRepoMutableData;
+    public MutableLiveData<ArrayList<ProfileRepo>> getRepos(String userName) {
+        return newsRepository.getRepos(userName);
     }
 }
 

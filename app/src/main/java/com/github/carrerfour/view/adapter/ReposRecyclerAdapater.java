@@ -8,11 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.github.carrerfour.model.ProfileRepo;
 import com.github.carrerfour.R;
+import com.github.carrerfour.model.ProfileRepo;
 
 import java.util.ArrayList;
 
@@ -21,12 +20,10 @@ public class ReposRecyclerAdapater extends RecyclerView.Adapter<ReposRecyclerAda
     private LayoutInflater layoutInflater;
     private ArrayList<ProfileRepo> profileRepoArrayList;
 
-
     public ReposRecyclerAdapater(Context context, ArrayList<ProfileRepo> profileRepoArrayList) {
         this.profileRepoArrayList = profileRepoArrayList;
         layoutInflater = LayoutInflater.from(context);
     }
-
 
     @NonNull
     @Override
@@ -38,18 +35,9 @@ public class ReposRecyclerAdapater extends RecyclerView.Adapter<ReposRecyclerAda
 
     @Override
     public void onBindViewHolder(@NonNull RepoViewHolder holder, final int position) {
-
         ProfileRepo profileRepo = profileRepoArrayList.get(position);
         holder.tvRepoName.setText(profileRepo.getName());
-
-        if (profileRepo.getIsPrivate()) {
-            holder.tvIsPrivate.setText("private");
-        } else {
-            holder.tvIsPrivate.setText("public");
-        }
-
         holder.tvLastUpdated.setText(profileRepo.getUpdatedAt());
-
 
     }
 
@@ -61,7 +49,6 @@ public class ReposRecyclerAdapater extends RecyclerView.Adapter<ReposRecyclerAda
     class RepoViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvRepoName;
-        private TextView tvIsPrivate;
         private TextView tvLastUpdated;
         private CardView cardView;
 
@@ -69,13 +56,11 @@ public class ReposRecyclerAdapater extends RecyclerView.Adapter<ReposRecyclerAda
             super(view);
 
             tvRepoName = view.findViewById(R.id.tv_repo_name);
-            tvIsPrivate = view.findViewById(R.id.tv_repo_type);
             tvLastUpdated = view.findViewById(R.id.tv_last_update);
             cardView = view.findViewById(R.id.card_view);
 
-
             CardView.LayoutParams layoutParams = new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(8,0,8,32);
+            layoutParams.setMargins(8, 0, 8, 32);
             cardView.setLayoutParams(layoutParams);
 
 

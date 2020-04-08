@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ProfileDetail implements Parcelable {
+public class ProfileDetail extends ResponseContainer implements Parcelable {
 
     @SerializedName("name")
     String name;
@@ -18,14 +18,17 @@ public class ProfileDetail implements Parcelable {
     @SerializedName("avatar_url")
     String avatarUrl;
 
+    public ProfileDetail() {
 
-    public ProfileDetail(Parcel sources)
-    {
-        name=sources.readString();
-        company=sources.readString();
-        blog=sources.readString();
-        avatarUrl=sources.readString();
-        location=sources.readString();
+    }
+
+
+    public ProfileDetail(Parcel sources) {
+        name = sources.readString();
+        company = sources.readString();
+        blog = sources.readString();
+        avatarUrl = sources.readString();
+        location = sources.readString();
 
     }
 
@@ -92,4 +95,5 @@ public class ProfileDetail implements Parcelable {
     public void setLocation(String location) {
         this.location = location;
     }
+
 }

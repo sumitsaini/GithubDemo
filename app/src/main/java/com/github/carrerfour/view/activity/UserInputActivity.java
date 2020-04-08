@@ -68,20 +68,17 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
         }
 
         showProgressDailog();
-        viewModel.getDetails(etSearch.getText().toString());
-        viewModel.getProfileDetailMutableLiveData().observe(this, new Observer<ProfileDetail>() {
+        viewModel.getDetails(etSearch.getText().toString()).observe(this, new Observer<ProfileDetail>() {
             @Override
             public void onChanged(ProfileDetail profileDetail) {
-                if (profileDetail != null) {
-                    if (dialog != null) {
-                        dialog.cancel();
-                    }
+
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.cancel();
+                }
+                if (profileDetail.isSuccess()) {
                     startDetailActivity(profileDetail);
                 } else {
-                    if (dialog != null) {
-                        dialog.cancel();
-                    }
-                    showSnackBar("No data found");
+                    showSnackBar(profileDetail.getErrorMessage());
                 }
             }
         });
@@ -95,7 +92,6 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
         intent.putExtra("searchText", etSearch.getText().toString());
         startActivity(intent);
     }
-
 
     public void showProgressDailog() {
         dialog = new Dialog(this);

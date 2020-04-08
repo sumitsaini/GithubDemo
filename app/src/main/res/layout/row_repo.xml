@@ -37,21 +37,6 @@
 
 
         <TextView
-            android:id="@+id/tv_repo_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="Repo type"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/font_s"
-            android:visibility="gone"
-            android:layout_marginLeft="@dimen/medium_padding"
-            app:layout_constraintLeft_toRightOf="@+id/tv_repo_name"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_repo_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
             android:id="@+id/tv_last_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

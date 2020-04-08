@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,7 +39,6 @@ public class UserDetailActivity extends AppCompatActivity {
 
         userDetailViewModel = ViewModelProviders.of(this).get(UserDetailViewModel.class);
 
-
         initViews();
         setProperties();
 
@@ -50,10 +50,7 @@ public class UserDetailActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
         profileRepoArrayList = new ArrayList<>();
-
-
     }
 
     public void setProperties() {
@@ -67,10 +64,10 @@ public class UserDetailActivity extends AppCompatActivity {
         Picasso.get().load(profileDetail.getAvatarUrl()).placeholder(R.drawable.github_icon).into(ivAvatar);
 
         reposRecyclerAdapater = new ReposRecyclerAdapater(this, profileRepoArrayList);
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(reposRecyclerAdapater);
 
-        userDetailViewModel.getRepos(searchText);
-        userDetailViewModel.getProfileRepoMutableData().observe(this, new Observer<ArrayList<ProfileRepo>>() {
+        userDetailViewModel.getRepos(searchText).observe(this, new Observer<ArrayList<ProfileRepo>>() {
             @Override
             public void onChanged(ArrayList<ProfileRepo> profileRepos) {
                 if (profileRepos != null && profileRepos.size() > 0) {

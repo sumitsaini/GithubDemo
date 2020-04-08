@@ -2,7 +2,7 @@ package com.github.carrerfour.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ProfileRepo {
+public class ProfileRepo extends ResponseContainer {
 
     @SerializedName("name")
     String name;
@@ -10,6 +10,7 @@ public class ProfileRepo {
     boolean isPrivate;
     @SerializedName("updated_at")
     String updatedAt;
+    String errorMsg;
 
 
     public String getName() {
@@ -34,5 +35,14 @@ public class ProfileRepo {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

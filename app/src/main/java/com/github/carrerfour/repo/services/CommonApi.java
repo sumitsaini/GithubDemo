@@ -1,8 +1,7 @@
-package com.github.carrerfour.Repo.Services;
+package com.github.carrerfour.repo.services;
 
 import com.github.carrerfour.model.ProfileDetail;
 import com.github.carrerfour.model.ProfileRepo;
-import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
