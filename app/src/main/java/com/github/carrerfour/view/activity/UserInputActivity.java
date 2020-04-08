@@ -61,11 +61,22 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    public void searchDetails() {
+    public boolean checkError() {
         if (etSearch.getText().toString().equals("")) {
             showSnackBar("Search can't empty");
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void searchDetails() {
+
+        if (checkError()) {
             return;
         }
+
 
         showProgressDailog();
         viewModel.getDetails(etSearch.getText().toString()).observe(this, new Observer<ProfileDetail>() {

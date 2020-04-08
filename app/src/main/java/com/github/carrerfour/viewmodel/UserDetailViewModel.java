@@ -22,5 +22,7 @@ public class UserDetailViewModel extends AndroidViewModel {
     public MutableLiveData<ArrayList<ProfileRepo>> getRepos(String userName) {
         return newsRepository.getRepos(userName);
     }
+
+
 }
 
