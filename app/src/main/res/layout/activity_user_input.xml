@@ -26,7 +26,6 @@
         android:layout_marginRight="@dimen/extra_large_padding"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="sumitsaini"
         android:singleLine="true"
         android:layout_marginBottom="@dimen/extra_large_padding"
         android:hint="Search Author and Repo"
