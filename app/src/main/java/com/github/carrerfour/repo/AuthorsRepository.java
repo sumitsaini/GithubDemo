@@ -30,9 +30,16 @@ public class AuthorsRepository {
         commonApi.getDetail(userName).enqueue(new Callback<ProfileDetail>() {
             @Override
             public void onResponse(Call<ProfileDetail> call, Response<ProfileDetail> response) {
-                ProfileDetail profileDetail = response.body();
-                profileDetail.setSuccess(true);
-                responseContainerMutableLiveData.postValue(profileDetail);
+                if (response != null && response.body() != null) {
+                    ProfileDetail profileDetail = response.body();
+                    profileDetail.setSuccess(true);
+                    responseContainerMutableLiveData.postValue(profileDetail);
+                } else {
+                    ProfileDetail profileDetail = new ProfileDetail();
+                    profileDetail.setSuccess(false);
+                    profileDetail.setErrorMessage("No data found");
+                    responseContainerMutableLiveData.postValue(profileDetail);
+                }
 
             }
 
