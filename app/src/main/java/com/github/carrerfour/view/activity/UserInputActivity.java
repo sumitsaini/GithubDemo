@@ -94,7 +94,6 @@ public class UserInputActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-
     }
 
     public void startDetailActivity(ProfileDetail profileDetail) {
